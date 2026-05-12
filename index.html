@@ -1,442 +1,652 @@
+<!-- ========================= -->
+<!-- index.html -->
+<!-- ========================= -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>MCNG | HRBRP</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Tenor+Sans&family=Figtree:wght@300;400;500;700&display=swap" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
-html,body{overflow-x:hidden;background:#050805;color:#fff;font-family:'Figtree',sans-serif;scroll-behavior:auto}
-body{cursor:default}
-canvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-2}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MCNG | HRBRP</title>
 
-:root{
---green:#39452b;
---light:#8fa678;
---glass:rgba(255,255,255,0.05);
-}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tenor+Sans&family=Figtree:wght@300;400;500;700&display=swap" rel="stylesheet">
 
-.noise{
-position:fixed;
-inset:0;
-pointer-events:none;
-background:url('https://grainy-gradients.vercel.app/noise.svg');
-opacity:.07;
-z-index:-1;
-}
+  <link rel="stylesheet" href="style.css">
 
-nav{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:18px 40px;
-z-index:1000;
-backdrop-filter:blur(14px);
-background:rgba(0,0,0,.25);
-border-bottom:1px solid rgba(255,255,255,.06);
-}
-
-.logo{
-font-family:'Tenor Sans';
-font-size:1.5rem;
-letter-spacing:3px;
-color:var(--light)
-}
-
-nav ul{
-display:flex;
-gap:30px;
-list-style:none
-}
-
-nav a{
-text-decoration:none;
-color:#d5e4c6;
-font-size:.95rem;
-transition:.3s
-}
-
-nav a:hover{color:#fff}
-
-.hero{
-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
-position:relative;
-overflow:hidden
-}
-
-.hero-content{
-text-align:center;
-z-index:5
-}
-
-.hero h1{
-font-family:'Tenor Sans';
-font-size:8vw;
-line-height:.9;
-letter-spacing:8px;
-text-shadow:0 0 30px rgba(143,166,120,.35)
-}
-
-.hero p{
-margin-top:20px;
-font-size:1.2rem;
-color:#cad9bc;
-max-width:700px
-}
-
-.cta{
-margin-top:35px;
-display:flex;
-gap:18px;
-justify-content:center;
-flex-wrap:wrap
-}
-
-.btn{
-padding:15px 28px;
-border-radius:14px;
-background:var(--green);
-color:white;
-text-decoration:none;
-font-weight:600;
-transition:.35s;
-position:relative;
-overflow:hidden;
-box-shadow:0 0 25px rgba(57,69,43,.4)
-}
-
-.btn:hover{
-transform:translateY(-4px) scale(1.03);
-box-shadow:0 0 40px rgba(143,166,120,.5)
-}
-
-.orb{
-position:absolute;
-border-radius:50%;
-filter:blur(100px);
-opacity:.4;
-animation:float 8s infinite ease-in-out
-}
-
-.orb1{width:400px;height:400px;background:#3c5330;top:10%;left:5%}
-.orb2{width:350px;height:350px;background:#5b7347;bottom:10%;right:10%;animation-delay:2s}
-
-@keyframes float{
-0%,100%{transform:translateY(0px)}
-50%{transform:translateY(-40px)}
-}
-
-.section{
-min-height:100vh;
-padding:120px 8vw;
-position:relative
-}
-
-.section-title{
-font-family:'Tenor Sans';
-font-size:4rem;
-margin-bottom:20px;
-color:#dce9d0
-}
-
-.section-sub{
-max-width:700px;
-font-size:1.1rem;
-line-height:1.7;
-color:#b7c6ab
-}
-
-.glass-card{
-background:var(--glass);
-border:1px solid rgba(255,255,255,.08);
-backdrop-filter:blur(18px);
-border-radius:24px;
-padding:30px;
-box-shadow:0 0 40px rgba(0,0,0,.3)
-}
-
-.horizontal-wrap{
-height:400vh;
-position:relative
-}
-
-.horizontal{
-position:sticky;
-top:0;
-height:100vh;
-display:flex;
-align-items:center;
-overflow:hidden
-}
-
-.track{
-display:flex;
-gap:40px;
-padding:0 10vw
-}
-
-.panel{
-min-width:70vw;
-height:70vh;
-border-radius:30px;
-padding:50px;
-background:linear-gradient(145deg,rgba(57,69,43,.7),rgba(12,15,12,.8));
-backdrop-filter:blur(12px);
-position:relative;
-overflow:hidden;
-border:1px solid rgba(255,255,255,.08)
-}
-
-.panel h2{
-font-family:'Tenor Sans';
-font-size:3rem;
-margin-bottom:20px
-}
-
-.panel p{
-max-width:500px;
-line-height:1.8;
-color:#d0dac8
-}
-
-.radar{
-position:absolute;
-right:8%;
-top:50%;
-transform:translateY(-50%);
-width:240px;
-height:240px;
-border-radius:50%;
-border:2px solid rgba(255,255,255,.12)
-}
-
-.radar::before{
-content:'';
-position:absolute;
-inset:0;
-border-radius:50%;
-border:2px solid rgba(255,255,255,.08);
-transform:scale(.7)
-}
-
-.radar::after{
-content:'';
-position:absolute;
-width:50%;
-height:2px;
-background:#d9ffc0;
-left:50%;
-top:50%;
-transform-origin:left center;
-animation:spin 4s linear infinite;
-box-shadow:0 0 20px #d9ffc0
-}
-
-@keyframes spin{
-from{transform:rotate(0deg)}
-to{transform:rotate(360deg)}
-}
-
-.model-scene{
-height:100vh;
-display:flex;
-align-items:center;
-justify-content:center;
-perspective:1400px;
-position:relative
-}
-
-.cube{
-width:260px;
-height:260px;
-position:relative;
-transform-style:preserve-3d;
-animation:rotateCube 12s infinite linear
-}
-
-.cube div{
-position:absolute;
-width:260px;
-height:260px;
-border:1px solid rgba(255,255,255,.15);
-background:rgba(57,69,43,.18);
-backdrop-filter:blur(8px)
-}
-
-.front{transform:translateZ(130px)}
-.back{transform:rotateY(180deg) translateZ(130px)}
-.left{transform:rotateY(-90deg) translateZ(130px)}
-.right{transform:rotateY(90deg) translateZ(130px)}
-.top{transform:rotateX(90deg) translateZ(130px)}
-.bottom{transform:rotateX(-90deg) translateZ(130px)}
-
-@keyframes rotateCube{
-from{transform:rotateX(-20deg) rotateY(0deg)}
-to{transform:rotateX(-20deg) rotateY(360deg)}
-}
-
-.overlay-text{
-position:absolute;
-left:10%;
-max-width:500px
-}
-
-.overlay-text h2{
-font-family:'Tenor Sans';
-font-size:4rem
-}
-
-.overlay-text p{
-margin-top:20px;
-line-height:1.7;
-color:#c8d6bd
-}
-
-.join{
-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
-text-align:center;
-position:relative
-}
-
-.join h2{
-font-family:'Tenor Sans';
-font-size:6rem;
-letter-spacing:6px;
-text-shadow:0 0 30px rgba(255,255,255,.2)
-}
-
-.join p{
-margin-top:20px;
-font-size:1.2rem;
-color:#d5dfcb
-}
-
-footer{
-padding:30px;
-text-align:center;
-color:#839175;
-background:#050805
-}
-
-@media(max-width:900px){
-.hero h1{font-size:4rem}
-.section-title{font-size:2.5rem}
-.panel{min-width:90vw;padding:30px}
-.overlay-text{left:5%;right:5%}
-.overlay-text h2{font-size:2.5rem}
-.join h2{font-size:3rem}
-nav ul{display:none}
-}
-</style>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.161.0/build/three.min.js"></script>
 </head>
 <body>
-<canvas id="particles"></canvas>
+
+<div class="loading-screen">
+  <div class="terminal">
+    <p>INITIALIZING MCNG SYSTEM...</p>
+    <p>CONNECTING TO HRBRP...</p>
+    <p>LOADING OPERATIONS...</p>
+    <p class="blink">ACCESS GRANTED</p>
+  </div>
+</div>
+
+<canvas id="bg"></canvas>
+
 <div class="noise"></div>
 
 <nav>
-<div class="logo">MCNG</div>
-<ul>
-<li><a href="#about">About</a></li>
-<li><a href="#ops">Operations</a></li>
-<li><a href="#training">Training</a></li>
-<li><a href="#join">Join</a></li>
-</ul>
+  <div class="logo">MCNG</div>
+
+  <div class="nav-links">
+    <a href="#intro">Intro</a>
+    <a href="#operations">Operations</a>
+    <a href="#command">Command</a>
+    <a href="#enlist">Enlist</a>
+  </div>
 </nav>
 
-<section class="hero">
-<div class="orb orb1"></div>
-<div class="orb orb2"></div>
-<div class="hero-content">
-<h1>MCNG</h1>
-<p>The Military National Guard of HRBRP. Border control, tactical response, convoy security, and elite military operations in an immersive roleplay environment.</p>
-<div class="cta">
-<a class="btn" href="#join">JOIN MCNG</a>
-<a class="btn" href="#ops">EXPLORE</a>
-</div>
-</div>
+<section class="hero" id="intro">
+
+  <div class="sun-glow"></div>
+
+  <div class="hero-overlay"></div>
+
+  <div class="hero-content">
+    <h1>MAPLECLIFF<br>NATIONAL<br>GUARD</h1>
+
+    <p>
+      Tactical border operations, convoy response, peacekeeping, and elite military coordination inside HRBRP.
+    </p>
+
+    <div class="hero-buttons">
+      <button>ENTER EXPERIENCE</button>
+      <button class="outline">VIEW OPERATIONS</button>
+    </div>
+  </div>
+
+  <div class="scroll-indicator">
+    SCROLL TO DEPLOY
+  </div>
+
 </section>
 
-<section class="section" id="about">
-<h2 class="section-title">Not Just Roleplay.</h2>
-<p class="section-sub">MCNG is designed to feel like a living military organization. Every scroll transition moves the user deeper into the tactical world of Highrock Border Roleplay. Operations, training, command structure, and response units are presented like an interactive military simulation.</p>
+<section class="scene checkpoint-scene">
+
+  <div class="scene-image checkpoint-image">
+    [checkpoint image here]
+  </div>
+
+  <div class="scene-text">
+    <h2>BORDER OPERATIONS</h2>
+
+    <p>
+      MCNG secures forest border crossings, responds to tactical incidents, and supports law enforcement across Highrock Border Roleplay.
+    </p>
+  </div>
+
 </section>
 
-<section class="horizontal-wrap" id="ops">
-<div class="horizontal">
-<div class="track">
-<div class="panel">
-<h2>Border Operations</h2>
-<p>Monitor crossings, secure checkpoints, and maintain tactical presence along the border. The MCNG operates as the first line of defense inside HRBRP.</p>
-<div class="radar"></div>
-</div>
+<section class="horizontal-section" id="operations">
 
-<div class="panel">
-<h2>Convoy Security</h2>
-<p>Escort strategic assets and protect military movement through dangerous regions. Dynamic deployments create cinematic military roleplay scenarios.</p>
-</div>
+  <div class="horizontal-track">
 
-<div class="panel">
-<h2>Tactical Response</h2>
-<p>Deploy rapid response teams during threats, raids, emergencies, and high-risk operations across the state.</p>
-</div>
-</div>
-</div>
+    <div class="vehicle-panel">
+      <div class="vehicle-visual">
+        [convoy image here]
+      </div>
+
+      <div class="vehicle-info">
+        <h2>FALCON INTERCEPTOR UTILITY 2024</h2>
+        <p>
+          Tactical convoy utility vehicle used during peacekeeping and border deployments.
+        </p>
+      </div>
+    </div>
+
+    <div class="vehicle-panel">
+      <div class="vehicle-visual">
+        [mobile command image here]
+      </div>
+
+      <div class="vehicle-info">
+        <h2>MOBILE COMMAND CENTER</h2>
+        <p>
+          Deployable command operations unit with tactical coordination capabilities.
+        </p>
+      </div>
+    </div>
+
+    <div class="vehicle-panel">
+      <div class="vehicle-visual">
+        [swat truck image here]
+      </div>
+
+      <div class="vehicle-info">
+        <h2>SWAT ARMORED TRUCK</h2>
+        <p>
+          Heavy tactical deployment vehicle used during high-risk operations.
+        </p>
+      </div>
+    </div>
+
+  </div>
+
 </section>
 
-<section class="model-scene" id="training">
-<div class="overlay-text">
-<h2>Training Simulation</h2>
-<p>MCNG members progress through structured military training, tactical discipline, and coordinated operations. This section behaves like a simulated military environment rather than a standard website block.</p>
-</div>
+<section class="scene tactical-scene">
 
-<div class="cube">
-<div class="front"></div>
-<div class="back"></div>
-<div class="left"></div>
-<div class="right"></div>
-<div class="top"></div>
-<div class="bottom"></div>
-</div>
+  <div class="helmet-container">
+    <div id="helmet3d"></div>
+  </div>
+
+  <div class="hud-overlay">
+    <div class="hud-box">TACTICAL RESPONSE</div>
+    <div class="hud-box">PEACEKEEPING ACTIVE</div>
+    <div class="hud-box">CONVOY STATUS: DEPLOYED</div>
+  </div>
+
 </section>
 
-<section class="join" id="join">
-<div>
-<h2>ENLIST</h2>
-<p>Join the Military National Guard and become part of HRBRP's elite defensive force.</p>
-<div class="cta">
-<a class="btn" href="#">JOIN DISCORD</a>
-<a class="btn" href="#">APPLY NOW</a>
-</div>
-</div>
+<section class="command-scene" id="command">
+
+  <div class="command-left">
+    <h2>COMMAND STRUCTURE</h2>
+
+    <div class="ranks">
+      <span>PVT</span>
+      <span>SGT</span>
+      <span>MSG</span>
+      <span>CW3</span>
+      <span>CPT</span>
+      <span>COL</span>
+      <span>GEN</span>
+    </div>
+
+    <p>
+      Structured military hierarchy designed around tactical leadership and coordinated operations.
+    </p>
+  </div>
+
+  <div class="command-right">
+    [command center image here]
+  </div>
+
 </section>
 
-<footer>
-<p>MCNG • Highrock Border Roleplay • Interactive Cinematic Experience</p>
-</footer>
+<section class="final-scene" id="enlist">
 
-<script>
-const lenis = new Lenis({
-  duration: 1.2,
-  smoothWheel: true
+  <div class="fog"></div>
+
+  <div class="final-content">
+
+    <div class="final-logo">
+      [logo image here]
+    </div>
+
+    <h2>ENLIST NOW</h2>
+
+    <p>
+      Become part of HRBRP's elite tactical force.
+    </p>
+
+    <button>JOIN MCNG</button>
+
+  </div>
+
+</section>
+
+<audio id="radio" loop>
+  <source src="audio/radio.mp3" type="audio/mpeg">
+</audio>
+
+<audio id="convoy" loop>
+  <source src="audio/convoy.mp3" type="audio/mpeg">
+</audio>
+
+<script src="main.js"></script>
+
+</body>
+</html>
+
+
+/* ========================= */
+/* style.css */
+/* ========================= */
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html,body{
+  overflow-x:hidden;
+  background:#040504;
+  color:white;
+  font-family:'Figtree',sans-serif;
+}
+
+body{
+  min-height:100vh;
+}
+
+canvas{
+  position:fixed;
+  inset:0;
+  z-index:-5;
+}
+
+.noise{
+  position:fixed;
+  inset:0;
+  opacity:.05;
+  background:url('https://grainy-gradients.vercel.app/noise.svg');
+  pointer-events:none;
+  z-index:-4;
+}
+
+.loading-screen{
+  position:fixed;
+  inset:0;
+  background:#000;
+  z-index:99999;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.terminal{
+  color:#b7ff9f;
+  font-family:monospace;
+  line-height:2;
+  font-size:1rem;
+}
+
+.blink{
+  animation:blink 1s infinite;
+}
+
+@keyframes blink{
+  50%{opacity:0}
+}
+
+nav{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:24px 50px;
+  z-index:999;
+  backdrop-filter:blur(16px);
+}
+
+.logo{
+  font-family:'Tenor Sans';
+  font-size:1.5rem;
+  letter-spacing:5px;
+}
+
+.nav-links{
+  display:flex;
+  gap:35px;
+}
+
+.nav-links a{
+  color:#d8e7cf;
+  text-decoration:none;
+}
+
+.hero{
+  height:100vh;
+  position:relative;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:linear-gradient(to bottom,#11170f,#040504);
+}
+
+.hero-overlay{
+  position:absolute;
+  inset:0;
+  background:
+  radial-gradient(circle at center,transparent 0%,rgba(0,0,0,.6) 70%),
+  url('images/background.jpg') center/cover;
+  opacity:.5;
+}
+
+.sun-glow{
+  position:absolute;
+  width:600px;
+  height:600px;
+  background:#8f7344;
+  border-radius:50%;
+  filter:blur(180px);
+  opacity:.25;
+}
+
+.hero-content{
+  position:relative;
+  text-align:center;
+  z-index:3;
+}
+
+.hero h1{
+  font-family:'Tenor Sans';
+  font-size:8vw;
+  line-height:.9;
+  letter-spacing:7px;
+}
+
+.hero p{
+  max-width:700px;
+  margin:30px auto;
+  font-size:1.1rem;
+  line-height:1.8;
+  color:#cbd6c4;
+}
+
+.hero-buttons{
+  display:flex;
+  justify-content:center;
+  gap:20px;
+}
+
+button{
+  padding:16px 30px;
+  border:none;
+  border-radius:16px;
+  background:#39452b;
+  color:white;
+  font-weight:600;
+  cursor:pointer;
+  transition:.35s;
+}
+
+button:hover{
+  transform:translateY(-5px);
+}
+
+.outline{
+  background:transparent;
+  border:1px solid rgba(255,255,255,.15);
+}
+
+.scroll-indicator{
+  position:absolute;
+  bottom:40px;
+  letter-spacing:4px;
+  font-size:.8rem;
+  opacity:.6;
+}
+
+.scene{
+  min-height:120vh;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 8vw;
+  position:relative;
+}
+
+.scene-image{
+  width:45%;
+  height:70vh;
+  border-radius:30px;
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.08);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:2rem;
+  color:#7f8d77;
+}
+
+.scene-text{
+  width:40%;
+}
+
+.scene-text h2{
+  font-family:'Tenor Sans';
+  font-size:5rem;
+  margin-bottom:20px;
+}
+
+.scene-text p{
+  line-height:1.8;
+  color:#cad6c2;
+}
+
+.horizontal-section{
+  height:500vh;
+  position:relative;
+}
+
+.horizontal-track{
+  position:sticky;
+  top:0;
+  height:100vh;
+  display:flex;
+  align-items:center;
+  gap:5vw;
+  padding:0 10vw;
+  width:max-content;
+}
+
+.vehicle-panel{
+  width:80vw;
+  height:75vh;
+  border-radius:35px;
+  background:linear-gradient(145deg,rgba(57,69,43,.5),rgba(0,0,0,.7));
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:50px;
+  border:1px solid rgba(255,255,255,.08);
+}
+
+.vehicle-visual{
+  width:48%;
+  height:100%;
+  border-radius:25px;
+  background:rgba(255,255,255,.05);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:2rem;
+  color:#84917a;
+}
+
+.vehicle-info{
+  width:42%;
+}
+
+.vehicle-info h2{
+  font-family:'Tenor Sans';
+  font-size:3.5rem;
+}
+
+.vehicle-info p{
+  margin-top:20px;
+  line-height:1.8;
+}
+
+.tactical-scene{
+  height:150vh;
+  position:relative;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+#helmet3d{
+  width:500px;
+  height:500px;
+}
+
+.hud-overlay{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+}
+
+.hud-box{
+  position:absolute;
+  padding:14px 18px;
+  border:1px solid rgba(160,255,160,.2);
+  background:rgba(0,0,0,.3);
+  backdrop-filter:blur(10px);
+  color:#d9ffd1;
+}
+
+.hud-box:nth-child(1){top:20%;left:10%}
+.hud-box:nth-child(2){top:30%;right:12%}
+.hud-box:nth-child(3){bottom:20%;left:20%}
+
+.command-scene{
+  min-height:120vh;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 8vw;
+}
+
+.command-left{
+  width:45%;
+}
+
+.command-left h2{
+  font-family:'Tenor Sans';
+  font-size:5rem;
+}
+
+.ranks{
+  display:flex;
+  flex-wrap:wrap;
+  gap:15px;
+  margin:30px 0;
+}
+
+.ranks span{
+  padding:14px 18px;
+  border-radius:14px;
+  background:rgba(255,255,255,.05);
+}
+
+.command-right{
+  width:40%;
+  height:70vh;
+  border-radius:30px;
+  background:rgba(255,255,255,.05);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  color:#78856e;
+  font-size:2rem;
+}
+
+.final-scene{
+  height:120vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  position:relative;
+  overflow:hidden;
+}
+
+.fog{
+  position:absolute;
+  inset:0;
+  background:radial-gradient(circle at center,transparent 0%,rgba(0,0,0,.8) 70%);
+}
+
+.final-content{
+  position:relative;
+  text-align:center;
+}
+
+.final-logo{
+  width:220px;
+  height:220px;
+  margin:0 auto 30px;
+  border-radius:30px;
+  background:rgba(255,255,255,.05);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#7b8674;
+}
+
+.final-content h2{
+  font-family:'Tenor Sans';
+  font-size:7rem;
+}
+
+.final-content p{
+  margin:20px 0 30px;
+  color:#cad7c3;
+}
+
+@media(max-width:900px){
+
+.hero h1{
+font-size:4rem;
+}
+
+.scene,
+.command-scene,
+.vehicle-panel{
+flex-direction:column;
+}
+
+.scene-image,
+.scene-text,
+.command-left,
+.command-right,
+.vehicle-visual,
+.vehicle-info{
+width:100%;
+}
+
+.scene-text h2,
+.command-left h2,
+.vehicle-info h2,
+.final-content h2{
+font-size:3rem;
+}
+
+.nav-links{
+display:none;
+}
+
+}
+
+
+// =========================
+// main.js
+// =========================
+
+window.addEventListener('load',()=>{
+
+  gsap.to('.loading-screen',{
+    opacity:0,
+    duration:1.5,
+    delay:2,
+    onComplete:()=>{
+      document.querySelector('.loading-screen').style.display='none'
+    }
+  })
+
 })
 
-function raf(time) {
+const lenis = new Lenis({
+  smoothWheel:true,
+  duration:1.3
+})
+
+function raf(time){
   lenis.raf(time)
   requestAnimationFrame(raf)
 }
@@ -444,125 +654,165 @@ requestAnimationFrame(raf)
 
 gsap.registerPlugin(ScrollTrigger)
 
-const track = document.querySelector('.track')
+// HERO ANIMATION
 
-gsap.to(track, {
-  x: () => -(track.scrollWidth - innerWidth + 200),
-  ease: 'none',
-  scrollTrigger: {
-    trigger: '.horizontal-wrap',
-    start: 'top top',
-    end: 'bottom bottom',
-    scrub: 1
+gsap.from('.hero h1',{
+  y:150,
+  opacity:0,
+  duration:1.6
+})
+
+gsap.from('.hero p',{
+  y:80,
+  opacity:0,
+  duration:1.4,
+  delay:.4
+})
+
+// REAL HORIZONTAL SCROLL
+
+const track = document.querySelector('.horizontal-track')
+
+let horizontalAmount = track.scrollWidth - window.innerWidth + 200
+
+gsap.to(track,{
+  x:-horizontalAmount,
+  ease:'none',
+  scrollTrigger:{
+    trigger:'.horizontal-section',
+    start:'top top',
+    end:()=>'+=' + horizontalAmount,
+    scrub:1,
+    pin:true,
+    anticipatePin:1
   }
 })
 
-gsap.from('.hero h1', {
-  y: 100,
-  opacity: 0,
-  duration: 1.5
-})
+// SCENE PARALLAX
 
-gsap.from('.hero p', {
-  y: 40,
-  opacity: 0,
-  delay: .5,
-  duration: 1.2
-})
-
-gsap.utils.toArray('.panel').forEach(panel => {
-  gsap.from(panel, {
-    opacity: 0,
-    scale: .85,
-    scrollTrigger: {
-      trigger: panel,
-      start: 'left center',
-      scrub: 1
-    }
-  })
-})
-
-gsap.to('.cube', {
-  rotateY: 720,
-  scrollTrigger: {
-    trigger: '.model-scene',
-    start: 'top center',
-    end: 'bottom top',
-    scrub: 2
+gsap.to('.checkpoint-image',{
+  y:-120,
+  scrollTrigger:{
+    trigger:'.checkpoint-scene',
+    scrub:1
   }
 })
 
-const canvas = document.getElementById('particles')
+// THREE JS HELMET
+
+const scene = new THREE.Scene()
+const camera = new THREE.PerspectiveCamera(45,1,0.1,1000)
+const renderer = new THREE.WebGLRenderer({alpha:true,antialias:true})
+
+renderer.setSize(500,500)
+document.getElementById('helmet3d').appendChild(renderer.domElement)
+
+const geometry = new THREE.IcosahedronGeometry(2.2,1)
+const material = new THREE.MeshStandardMaterial({
+  color:0x5d7050,
+  metalness:.8,
+  roughness:.25,
+  wireframe:false
+})
+
+const helmet = new THREE.Mesh(geometry,material)
+scene.add(helmet)
+
+const light = new THREE.PointLight(0xffffff,2)
+light.position.set(5,5,5)
+scene.add(light)
+
+const ambient = new THREE.AmbientLight(0xffffff,.7)
+scene.add(ambient)
+
+camera.position.z = 6
+
+function animate(){
+  requestAnimationFrame(animate)
+  renderer.render(scene,camera)
+}
+animate()
+
+// HELMET MOVES WITH SCROLL
+
+ScrollTrigger.create({
+  trigger:'.tactical-scene',
+  start:'top bottom',
+  end:'bottom top',
+  scrub:1,
+  onUpdate:self=>{
+    helmet.rotation.y = self.progress * Math.PI * 4
+    helmet.rotation.x = self.progress * Math.PI
+    helmet.position.y = self.progress * 2 - 1
+  }
+})
+
+// FINAL TEXT REVEAL
+
+gsap.from('.final-content h2',{
+  scale:.7,
+  opacity:0,
+  scrollTrigger:{
+    trigger:'.final-scene',
+    start:'top center',
+    scrub:1
+  }
+})
+
+// PARTICLES
+
+const canvas = document.getElementById('bg')
 const ctx = canvas.getContext('2d')
 canvas.width = innerWidth
 canvas.height = innerHeight
 
-let particles = []
-for(let i=0;i<120;i++){
+let particles=[]
+
+for(let i=0;i<150;i++){
   particles.push({
     x:Math.random()*canvas.width,
     y:Math.random()*canvas.height,
-    vx:(Math.random()-.5)*0.6,
-    vy:(Math.random()-.5)*0.6,
+    vx:(Math.random()-.5)*.4,
+    vy:(Math.random()-.5)*.4,
     size:Math.random()*2+1
   })
 }
 
-let mouse = {x:null,y:null}
-window.addEventListener('mousemove',e=>{
-  mouse.x=e.x
-  mouse.y=e.y
-})
+function draw(){
 
-function animate(){
   ctx.clearRect(0,0,canvas.width,canvas.height)
 
   particles.forEach(p=>{
+
     p.x+=p.vx
     p.y+=p.vy
 
     if(p.x<0||p.x>canvas.width)p.vx*=-1
     if(p.y<0||p.y>canvas.height)p.vy*=-1
 
-    const dx = mouse.x-p.x
-    const dy = mouse.y-p.y
-    const dist = Math.sqrt(dx*dx+dy*dy)
-
-    if(dist<120){
-      p.x -= dx*0.002
-      p.y -= dy*0.002
-    }
-
     ctx.beginPath()
     ctx.arc(p.x,p.y,p.size,0,Math.PI*2)
-    ctx.fillStyle='rgba(190,255,170,.7)'
+    ctx.fillStyle='rgba(180,255,170,.7)'
     ctx.fill()
+
   })
 
-  for(let a=0;a<particles.length;a++){
-    for(let b=a;b<particles.length;b++){
-      const dx = particles[a].x-particles[b].x
-      const dy = particles[a].y-particles[b].y
-      const dist = Math.sqrt(dx*dx+dy*dy)
-
-      if(dist<100){
-        ctx.beginPath()
-        ctx.moveTo(particles[a].x,particles[a].y)
-        ctx.lineTo(particles[b].x,particles[b].y)
-        ctx.strokeStyle='rgba(180,255,180,.06)'
-        ctx.stroke()
-      }
-    }
-  }
-
-  requestAnimationFrame(animate)
+  requestAnimationFrame(draw)
 }
-animate()
 
-window.addEventListener('resize',()=>{
-  canvas.width=innerWidth
-  canvas.height=innerHeight
-})
-</script>
-</body>
-</html>
+draw()
+
+// AUDIO START
+
+window.addEventListener('click',()=>{
+
+  const radio = document.getElementById('radio')
+  const convoy = document.getElementById('convoy')
+
+  radio.volume = .25
+  convoy.volume = .15
+
+  radio.play().catch(()=>{})
+  convoy.play().catch(()=>{})
+
+},{once:true})
