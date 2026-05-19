@@ -115,8 +115,26 @@
       font-family:'Tenor Sans';
       font-size:1.5rem;
       letter-spacing:3px;
+      color:white;
+      text-decoration:none;
+      position:relative;
     }
 
+    .logo::after{
+      content:"";
+      position:absolute;
+      left:0;
+      bottom:-5px;
+      width:0%;
+      height:1px;
+      background:white;
+      transition:.3s;
+    }
+
+    .logo:hover::after{
+      width:100%;
+    }
+    
     .nav-links{
       display:flex;
       gap:30px;
