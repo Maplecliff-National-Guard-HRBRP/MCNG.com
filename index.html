@@ -553,6 +553,27 @@
       color:#7c847a;
     }
 
+    .footer-link{
+      color:#7c847a;
+      text-decoration:none;
+      position:relative;
+      transition:.3s;
+    }
+
+    .footer-link::after{
+      content:"";
+      position:absolute;
+      left:0;
+      bottom:-3px;
+      width:0%;
+      height:1px;
+      background:#7c847a;
+      transition:.3s;
+    }
+
+    .footer-link:hover::after{
+      width:100%;
+    }
     /* RESPONSIVE */
 
     @media(max-width:900px){
@@ -1058,8 +1079,11 @@
   </section>
 
   <footer>
-    Maplecliff National Guard • Highrock Border Roleplay
-  </footer>
+    Maplecliff National Guard • 
+    <a href="https://discord.gg/highrock" target="_blank" class="footer-link">
+      Highrock Border Roleplay
+    </a>
+  </>
 
   <script>
 
