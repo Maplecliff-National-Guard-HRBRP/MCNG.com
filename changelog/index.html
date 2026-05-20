@@ -700,14 +700,8 @@ GENERATED CODE:
 ${code}`
 
     function copyCode(){
-
-      const fullText = document.getElementById('generatedCode').textContent
-    
-      // Extract only the HTML code block
-      const codeOnly = fullText.split("GENERATED CODE:")[1]?.trim()
-    
-      navigator.clipboard.writeText(codeOnly)
-    
+      const text = document.getElementById('generatedCode').textContent
+      navigator.clipboard.writeText(text)
       alert("Code copied!")
     }
 
