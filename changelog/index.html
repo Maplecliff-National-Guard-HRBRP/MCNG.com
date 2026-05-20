@@ -278,6 +278,9 @@
       padding:35px;
       backdrop-filter:blur(16px);
       animation:popup .4s ease;
+    
+      max-height:85vh;
+      overflow-y:auto;
     }
 
     @keyframes popup{
@@ -696,16 +699,16 @@ GENERATED CODE:
 
 ${code}`
 
-    }
-
     function copyCode(){
 
-      const text = document.getElementById('generatedCode').textContent
-
-      navigator.clipboard.writeText(text)
-
+      const fullText = document.getElementById('generatedCode').textContent
+    
+      // Extract only the HTML code block
+      const codeOnly = fullText.split("GENERATED CODE:")[1]?.trim()
+    
+      navigator.clipboard.writeText(codeOnly)
+    
       alert("Code copied!")
-
     }
 
     window.onclick = function(event){
