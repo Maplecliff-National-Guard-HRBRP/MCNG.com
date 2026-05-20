@@ -278,9 +278,6 @@
       padding:35px;
       backdrop-filter:blur(16px);
       animation:popup .4s ease;
-    
-      max-height:85vh;
-      overflow-y:auto;
     }
 
     @keyframes popup{
@@ -699,10 +696,16 @@ GENERATED CODE:
 
 ${code}`
 
+    }
+
     function copyCode(){
+
       const text = document.getElementById('generatedCode').textContent
+
       navigator.clipboard.writeText(text)
+
       alert("Code copied!")
+
     }
 
     window.onclick = function(event){
