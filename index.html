@@ -167,6 +167,52 @@
       width:100%;
     }
 
+    /* GALLERY SECTION LINK */
+
+    .gallery-link{
+      display:inline-flex;
+      align-items:center;
+      gap:20px;
+      cursor:pointer;
+      transition:transform .3s ease;
+      text-decoration:none !important;
+      color:var(--text);
+      -webkit-text-decoration:none;
+    }
+
+    .gallery-link:visited,
+    .gallery-link:link{
+      text-decoration:none !important;
+      color:var(--text);
+    }
+
+    .gallery-link .section-title{
+      margin-bottom:0;
+      text-decoration:none;
+      border-bottom:none;
+      color:var(--text);
+    }
+
+    .gallery-link:hover{
+      transform:scale(1.04);
+    }
+
+    .gallery-link .gallery-arrow{
+      font-size:clamp(2rem,4vw,4rem);
+      opacity:0;
+      transform:translateX(-12px);
+      transition:opacity .3s ease, transform .3s ease;
+      line-height:1;
+      font-family:'Tenor Sans',sans-serif;
+      align-self:center;
+      display:inline-block;
+    }
+
+    .gallery-link:hover .gallery-arrow{
+      opacity:1;
+      transform:translateX(0);
+    }
+
     /* HERO */
 
     .hero{
@@ -424,6 +470,7 @@
       object-fit:cover;
       display:block;
     }
+
     /* LEGACY */
 
     .legacy-grid{
@@ -521,10 +568,8 @@
       width:100%;
       max-width:1841px;
       aspect-ratio:1841 / 616;
-
       overflow:hidden;
       border-radius:24px;
-
       border:1px solid rgba(255,255,255,0.08);
     }
 
@@ -534,6 +579,7 @@
       object-fit:cover;
       display:block;
     }
+
     /* JOIN */
 
     .join{
@@ -605,6 +651,7 @@
     .footer-link:hover::after{
       width:100%;
     }
+
     /* RESPONSIVE */
 
     @media(max-width:900px){
@@ -791,7 +838,6 @@
 
     <div class="vehicle-grid">
 
-      <!-- VEHICLE CARD -->
       <div class="glass vehicle-card">
         <div class="vehicle-image">
           <img src="mcng-web-images/car1.png" alt="Falcon Police Interceptor 2019">
@@ -974,7 +1020,7 @@
 
     <p class="section-sub">
       The foundation of MCNG was built from specialized units and tactical divisions
-      that shaped the department’s operational identity.
+      that shaped the department's operational identity.
     </p>
 
     <div class="legacy-grid">
@@ -1111,7 +1157,7 @@
 
   </section>
 
-   <!-- GALLERY -->
+  <!-- GALLERY -->
 
   <section>
 
@@ -1161,7 +1207,7 @@
     <a href="changelog" target="_blank" class="footer-link">
        • Website Changelog
     </a>
-  </>
+  </footer>
 
   <script>
 
