@@ -520,11 +520,133 @@
       background:rgba(255,255,255,.03);
       color:#b4bbb1;
       transition:.3s;
+      cursor:pointer;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:8px;
+      user-select:none;
     }
 
     .rank-group li:hover{
       background:rgba(86,108,64,.2);
       transform:translateX(5px);
+    }
+
+    .rank-chevron{
+      font-size:.75rem;
+      opacity:.45;
+      flex-shrink:0;
+    }
+
+    /* MODAL */
+
+    .rank-modal-overlay{
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,.7);
+      backdrop-filter:blur(6px);
+      z-index:2000;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      opacity:0;
+      pointer-events:none;
+      transition:opacity .25s ease;
+    }
+
+    .rank-modal-overlay.open{
+      opacity:1;
+      pointer-events:all;
+    }
+
+    .rank-modal{
+      background:#0e140e;
+      border:1px solid rgba(86,108,64,.35);
+      border-radius:20px;
+      padding:36px 40px;
+      width:min(500px,90vw);
+      max-height:80vh;
+      overflow-y:auto;
+      transform:translateY(20px) scale(.97);
+      transition:transform .25s ease;
+      box-shadow:0 0 50px rgba(86,108,64,.2);
+      position:relative;
+    }
+
+    .rank-modal-overlay.open .rank-modal{
+      transform:translateY(0) scale(1);
+    }
+
+    .rank-modal-header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      margin-bottom:24px;
+    }
+
+    .rank-modal-title{
+      font-family:'Tenor Sans',sans-serif;
+      font-size:1.5rem;
+      letter-spacing:2px;
+      color:#d9e2d0;
+    }
+
+    .rank-modal-close{
+      background:none;
+      border:none;
+      color:#6b7468;
+      font-size:1.6rem;
+      cursor:pointer;
+      line-height:1;
+      transition:.2s;
+      padding:0 4px;
+    }
+
+    .rank-modal-close:hover{
+      color:#fff;
+    }
+
+    .rank-modal-updated{
+      font-size:.75rem;
+      color:#4e574b;
+      margin-bottom:20px;
+      letter-spacing:1px;
+    }
+
+    .rank-member-list{
+      list-style:none;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+
+    .rank-member-list li{
+      padding:10px 16px;
+      border-radius:10px;
+      background:rgba(255,255,255,.04);
+      color:#c2c9bc;
+      font-size:.95rem;
+      display:flex;
+      align-items:center;
+      gap:10px;
+      cursor:default;
+      transform:none !important;
+    }
+
+    .rank-member-list li::before{
+      content:"";
+      width:7px;
+      height:7px;
+      border-radius:50%;
+      background:var(--green2);
+      flex-shrink:0;
+    }
+
+    .rank-modal-empty{
+      color:#4e574b;
+      font-style:italic;
+      padding:10px 0;
     }
 
     /* COMMAND */
@@ -688,6 +810,10 @@
     <a href="#" class="logo">MCNG</a>
 
     <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#operations">Operations</a>
+      <a href="#vehicles">Vehicles</a>
+      <a href="#ranks">Ranks</a>
       <a href="#join">Join</a>
       <a href="changelog">Changelog</a>
       <a href="gallery">Gallery</a>
@@ -1048,71 +1174,71 @@
       <div class="glass rank-group">
         <h3>Junior Enlisted</h3>
         <ul>
-          <li>PVT</li>
-          <li>PV2</li>
-          <li>PFC</li>
-          <li>SPC</li>
+          <li data-rank="PVT">PVT <span class="rank-chevron">›</span></li>
+          <li data-rank="PV2">PV2 <span class="rank-chevron">›</span></li>
+          <li data-rank="PFC">PFC <span class="rank-chevron">›</span></li>
+          <li data-rank="SPC">SPC <span class="rank-chevron">›</span></li>
         </ul>
       </div>
 
       <div class="glass rank-group">
         <h3>Non-commissioned Officers</h3>
         <ul>
-          <li>CPL</li>
-          <li>SGT</li>
-          <li>SSG</li>
+          <li data-rank="CPL">CPL <span class="rank-chevron">›</span></li>
+          <li data-rank="SGT">SGT <span class="rank-chevron">›</span></li>
+          <li data-rank="SSG">SSG <span class="rank-chevron">›</span></li>
         </ul>
       </div>
 
       <div class="glass rank-group">
         <h3>Senior NCOs</h3>
         <ul>
-          <li>SFC</li>
-          <li>MSG</li>
-          <li>1SG</li>
-          <li>SGM</li>
-          <li>CSM</li>
-          <li>SMA</li>
+          <li data-rank="SFC">SFC <span class="rank-chevron">›</span></li>
+          <li data-rank="MSG">MSG <span class="rank-chevron">›</span></li>
+          <li data-rank="1SG">1SG <span class="rank-chevron">›</span></li>
+          <li data-rank="SGM">SGM <span class="rank-chevron">›</span></li>
+          <li data-rank="CSM">CSM <span class="rank-chevron">›</span></li>
+          <li data-rank="SMA">SMA <span class="rank-chevron">›</span></li>
         </ul>
       </div>
 
       <div class="glass rank-group">
         <h3>Warrant Officers</h3>
         <ul>
-          <li>WO1</li>
-          <li>CW2</li>
-          <li>CW3</li>
-          <li>CW4</li>
-          <li>CW5</li>
+          <li data-rank="WO1">WO1 <span class="rank-chevron">›</span></li>
+          <li data-rank="CW2">CW2 <span class="rank-chevron">›</span></li>
+          <li data-rank="CW3">CW3 <span class="rank-chevron">›</span></li>
+          <li data-rank="CW4">CW4 <span class="rank-chevron">›</span></li>
+          <li data-rank="CW5">CW5 <span class="rank-chevron">›</span></li>
         </ul>
       </div>
 
       <div class="glass rank-group">
         <h3>Junior Officers</h3>
         <ul>
-          <li>2LT</li>
-          <li>1LT</li>
-          <li>CPT</li>
+          <li data-rank="2LT">2LT <span class="rank-chevron">›</span></li>
+          <li data-rank="1LT">1LT <span class="rank-chevron">›</span></li>
+          <li data-rank="CPT">CPT <span class="rank-chevron">›</span></li>
         </ul>
       </div>
 
       <div class="glass rank-group">
         <h3>Senior Officers</h3>
         <ul>
-          <li>MAJ</li>
-          <li>LTC</li>
-          <li>COL</li>
+          <li data-rank="MAJ">MAJ <span class="rank-chevron">›</span></li>
+          <li data-rank="LTC">LTC <span class="rank-chevron">›</span></li>
+          <li data-rank="COL">COL <span class="rank-chevron">›</span></li>
         </ul>
       </div>
 
       <div class="glass rank-group">
         <h3>General Officers</h3>
         <ul>
-          <li>BG</li>
-          <li>MG</li>
-          <li>LTG</li>
-          <li>GEN</li>
-          <li>GA</li>
+          <li data-rank="BG">BG <span class="rank-chevron">›</span></li>
+          <li data-rank="MG">MG <span class="rank-chevron">›</span></li>
+          <li data-rank="LTG">LTG <span class="rank-chevron">›</span></li>
+          <li data-rank="GEN">GEN <span class="rank-chevron">›</span></li>
+          <li data-rank="GA">GA <span class="rank-chevron">›</span></li>
         </ul>
       </div>
 
@@ -1202,8 +1328,87 @@
     </a>
     <a href="changelog" target="_blank" class="footer-link">
        • Website Changelog
-      
+    </a>
+  </footer>
+
+  <!-- RANK MEMBERS MODAL -->
+  <div class="rank-modal-overlay" id="rankModal">
+    <div class="rank-modal" id="rankModalBox">
+      <div class="rank-modal-header">
+        <span class="rank-modal-title" id="rankModalTitle">—</span>
+        <button class="rank-modal-close" id="rankModalClose">✕</button>
+      </div>
+      <div class="rank-modal-updated" id="rankModalUpdated"></div>
+      <ul class="rank-member-list" id="rankModalList"></ul>
+    </div>
+  </div>
+
   <script>
+
+    // RANK MEMBERS
+    // Fetches members.json (committed weekly by GitHub Actions)
+
+    let membersData = null;
+
+    async function loadMembers(){
+      try{
+        const res = await fetch('members.json?t=' + Date.now());
+        if(!res.ok) throw new Error('not found');
+        membersData = await res.json();
+      } catch(e){
+        membersData = null;
+      }
+    }
+
+    loadMembers();
+
+    const modal        = document.getElementById('rankModal');
+    const modalTitle   = document.getElementById('rankModalTitle');
+    const modalUpdated = document.getElementById('rankModalUpdated');
+    const modalList    = document.getElementById('rankModalList');
+    const modalClose   = document.getElementById('rankModalClose');
+
+    function openRankModal(rank){
+      modalTitle.textContent = rank;
+
+      if(!membersData){
+        modalUpdated.textContent = '';
+        modalList.innerHTML = '<li style="cursor:default;transform:none!important;color:#4e574b;font-style:italic;padding:10px 0;">Members data not loaded yet. Run the GitHub Action first.</li>';
+      } else {
+        modalUpdated.textContent = 'Last updated: ' + (membersData.updated || '—');
+        const list = membersData.members?.[rank] || [];
+        if(list.length === 0){
+          modalList.innerHTML = '<li style="cursor:default;transform:none!important;color:#4e574b;font-style:italic;padding:10px 0;">No members with this rank.</li>';
+        } else {
+          modalList.innerHTML = list.map(name =>
+            `<li>${name}</li>`
+          ).join('');
+        }
+      }
+
+      modal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeRankModal(){
+      modal.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    // Attach click to every rank <li>
+    document.querySelectorAll('.rank-group li[data-rank]').forEach(li => {
+      li.addEventListener('click', () => openRankModal(li.dataset.rank));
+    });
+
+    modalClose.addEventListener('click', closeRankModal);
+
+    modal.addEventListener('click', e => {
+      if(e.target === modal) closeRankModal();
+    });
+
+    document.addEventListener('keydown', e => {
+      if(e.key === 'Escape') closeRankModal();
+    });
 
     // LENIS
 
