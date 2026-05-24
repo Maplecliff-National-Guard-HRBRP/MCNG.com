@@ -5,45 +5,38 @@ import os
 from datetime import datetime
 
 # ── CONFIG ──────────────────────────────────────────────────────────────────
-# Map each rank abbreviation to the EXACT Discord role name in your server.
+#Name needs to be the exact same as the discord role
 # If a rank doesn't have a Discord role, remove it from the dict.
 RANK_TO_ROLE = {
-    # Junior Enlisted
     "PVT":  "PVT",
-    "PV2":  "PV2",
-    "PFC":  "PFC",
-    "SPC":  "SPC",
-    # Non-commissioned Officers
-    "CPL":  "CPL",
-    "SGT":  "SGT",
-    "SSG":  "SSG",
-    # Senior NCOs
-    "SFC":  "SFC",
-    "MSG":  "MSG",
-    "1SG":  "1SG",
-    "SGM":  "SGM",
-    "CSM":  "CSM",
-    "SMA":  "SMA",
-    # Warrant Officers
-    "WO1":  "WO1",
-    "CW2":  "CW2",
-    "CW3":  "CW3",
-    "CW4":  "CW4",
-    "CW5":  "CW5",
-    # Junior Officers
-    "2LT":  "2LT",
-    "1LT":  "1LT",
-    "CPT":  "CPT",
-    # Senior Officers
-    "MAJ":  "MAJ",
-    "LTC":  "LTC",
-    "COL":  "COL",
-    # General Officers
-    "BG":   "BG",
-    "MG":   "MG",
-    "LTG":  "LTG",
-    "GEN":  "GEN",
-    "GA":   "GA",
+    "PV2":  "PVT",
+    "PFC":  "PVT",
+    "SPC":  "PVT",
+    "CPL":  "PVT",
+    "SGT":  "PVT",
+    "SSG":  "PVT",
+    "SFC":  "PVT",
+    "MSG":  "PVT",
+    "1SG":  "PVT",
+    "SGM":  "PVT",
+    "CSM":  "PVT",
+    "SMA":  "PVT",
+    "WO1":  "PVT",
+    "CW2":  "PVT",
+    "CW3":  "PVT",
+    "CW4":  "PVT",
+    "CW5":  "PVT",
+    "2LT":  "PVT",
+    "1LT":  "PVT",
+    "CPT":  "PVT",
+    "MAJ":  "PVT",
+    "LTC":  "PVT",
+    "COL":  "PVT",
+    "BG":   "PVT",
+    "MG":   "PVT",
+    "LTG":  "PVT",
+    "GEN":  "Owner",
+    "GA":   "Owner",
 }
 # ────────────────────────────────────────────────────────────────────────────
 
