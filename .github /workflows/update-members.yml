@@ -2,8 +2,8 @@ name: Update Discord Members
 
 on:
   schedule:
-    - cron: "0 0 * * 0"   # Every Sunday at midnight UTC
-  workflow_dispatch:        # Also lets you run it manually from GitHub
+    - cron: "0 0 * * 0"   # Every Sunday at midnight UTC 0 0 * * 0
+  workflow_dispatch:        #lets you run it manually from GitHub
 
 jobs:
   fetch:
